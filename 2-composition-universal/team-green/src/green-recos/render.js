@@ -1,13 +1,10 @@
-const recos = {
-  t_porsche: ['3', '5', '6'],
-  t_fendt: ['3', '6', '4'],
-  t_eicher: ['1', '8', '7'],
-};
+import React from 'react';
+import { renderToString } from 'react-dom/server';
 
-export default function renderRecos(sku = 't_porsche') {
-  const reco = recos[sku] || [];
+import App from './App';
+
+export default function renderRecos() {
   return `
-    <h3>Related Products</h3>
-    ${reco.map(id => `<img src="./green/images/reco_${id}.jpg" alt="Reco ${id}" />`).join('')}
+    ${renderToString(<App />)}
   `;
 }

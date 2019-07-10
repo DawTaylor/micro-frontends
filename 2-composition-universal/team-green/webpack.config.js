@@ -1,8 +1,15 @@
+const webpack = require('webpack')
+const path = require('path')
+
 module.exports = {
-  entry: './src/client.js',
-  output: {
-    filename: './build/fragments.js',
+
+  mode: 'development',
+
+  entry: {
+    'bundle': './src/green-recos/index.js',
+    'fragments': './src/client.js',
   },
+
   module: {
     rules: [
       {
@@ -11,10 +18,30 @@ module.exports = {
         use: {
           loader: 'babel-loader',
           options: {
-            presets: ['env'],
-          },
-        },
-      },
-    ],
+            presets: ['@babel/preset-react', '@babel/preset-env'],
+          }
+        }
+      }
+    ]
   },
-};
+    
+  output: {
+    path: path.resolve(__dirname, '../dist/'),
+    filename: '[name].js'
+  },
+
+  devServer: {
+    contentBase: './dist/',
+    port: '8000',
+    historyApiFallback: true,
+    hot: true,
+    open: true
+  },
+
+  watch:true,
+
+  plugins: [
+    new webpack.HotModuleReplacementPlugin(),
+  ]
+
+}

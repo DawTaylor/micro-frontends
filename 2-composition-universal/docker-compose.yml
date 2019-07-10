@@ -25,6 +25,7 @@ services:
      - "3002:3002"
     volumes:
      - ./team-green/src:/code/src
+     - ./team-green/dist:/code/dist
 
   team_red:
     build: ./team-red

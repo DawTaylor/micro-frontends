@@ -6,6 +6,7 @@ import renderRecos from './green-recos/render';
 const app = express();
 app.use(morgan('dev'));
 app.use('/green/images', express.static('./images'));
+app.use('/green/dist', express.static('./dist'));
 app.use('/green', express.static('./build'));
 
 app.use('/green-recos', (req, res) => {
